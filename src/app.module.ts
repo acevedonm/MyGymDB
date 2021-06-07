@@ -6,6 +6,7 @@ import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
 import { ExampleModule } from './modules/example/example.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MuscleModule } from './modules/muscle/muscle.module';
 require('dotenv').config();
 
 const { USER_NAME, PASSWORD, DB_NAME } = process.env;
@@ -24,6 +25,7 @@ const { USER_NAME, PASSWORD, DB_NAME } = process.env;
     }),
     ConfigModule,
     ExampleModule,
+    MuscleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

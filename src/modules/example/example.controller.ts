@@ -8,7 +8,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { CreateExampleDto } from './dtos';
+import { CreateExampleDto, EditExampleDto } from './dtos';
 import { ExampleService } from './example.service';
 
 //El controller es quien recibe la Request, y se la envia al servicio correspondiente.
@@ -17,8 +17,8 @@ import { ExampleService } from './example.service';
 export class ExampleController {
   constructor(private readonly _exampleService: ExampleService) {}
   @Get()
-  getExample() {
-    return this._exampleService.findAll;
+  getExample(): Promise<CreateExampleDto[]> {
+    return this._exampleService.findAll();
   }
 
   @Get(':id')
