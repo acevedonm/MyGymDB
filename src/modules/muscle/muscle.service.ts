@@ -1,18 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
+import { BaseServer } from 'src/shared/base.server';
 import { Repository } from 'typeorm';
 import { CreateMuscleDto, EditMuscleDto } from './dto';
 
 import { MuscleEntity } from './entities/muscle.entity';
 
 @Injectable()
-export class MuscleService {
+export class MuscleService extends BaseServer<MuscleEntity> {
   constructor(
     @InjectRepository(MuscleEntity)
     private readonly _postRepository: Repository<MuscleEntity>,
-  ) {}
-
+    private readonly _dtoCreate: CreateMuscleDto,
+  ) {
+    super(_postRepository);
+  }
+  /* 
   async findAll(): Promise<MuscleEntity[]> {
     return await this._postRepository.find();
   }
@@ -28,5 +32,5 @@ export class MuscleService {
   }
   async delete(id: number) {
     return await this._postRepository.delete(id);
-  }
+  } */
 }
